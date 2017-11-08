@@ -3,14 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ufabc.genetic.solution;
+package genetic.mutator;
+
+import jade.core.Agent;
 
 /**
  *
- * @author renan
+ * @author altargin
  */
-public interface Chromossome {
-
-    Chromossome crossover(Chromossome chromossome);
+public class Mutator extends Agent {
     
+    @Override
+    protected void setup() {
+        addBehaviour(new MutateAgent(this));
+    }
 }

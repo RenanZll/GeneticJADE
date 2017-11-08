@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ufabc.genetic.solution;
+package genetic.solution;
 
 import jade.core.Agent;
 import jade.core.behaviours.OneShotBehaviour;
