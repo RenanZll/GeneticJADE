@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ufabc.genetic.solution;
+package genetic.solution;
 
 import jade.core.Agent;
 
@@ -22,6 +22,7 @@ public class Solution extends Agent {
         this.chromossome = chromossome;
     }
     
+    @Override
     protected void setup() {
         addBehaviour(new Born(this));
     }

@@ -3,19 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package geneticjade;
+package genetic.solution;
 
 /**
  *
  * @author renan
  */
-public class GeneticJADE {
+public interface Chromossome {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+    Chromossome crossover(Chromossome chromossome);
     
 }
