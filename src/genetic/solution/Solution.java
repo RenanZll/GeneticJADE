@@ -55,4 +55,18 @@ public class Solution extends Agent {
         fitness_property.setValue(fitnessValue);
         return fitness_property;
     }
+    
+    public DFAgentDescription partner_description() {
+        DFAgentDescription agent_description = new DFAgentDescription();
+        agent_description.setName(getAID());
+        agent_description.addServices(reproduction_service_without_fitness());
+        return agent_description;
+    }
+    
+    private ServiceDescription reproduction_service_without_fitness() {
+        ServiceDescription reproduction_description = new ServiceDescription();
+        reproduction_description.setName("Reproduce");
+        reproduction_description.setOwnership("Solution");
+        return reproduction_description;
+    }
 }
