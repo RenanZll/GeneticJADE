@@ -7,6 +7,11 @@ package genetic.solution;
 
 import jade.core.Agent;
 import jade.core.behaviours.OneShotBehaviour;
+import jade.domain.DFService;
+import jade.domain.FIPAAgentManagement.DFAgentDescription;
+import jade.domain.FIPAAgentManagement.Property;
+import jade.domain.FIPAAgentManagement.ServiceDescription;
+import jade.domain.FIPAException;
 
 /**
  *
@@ -20,8 +25,24 @@ public class Born extends OneShotBehaviour{
 
     @Override
     public void action() {
-        //Adquirir Fitness
-        //Iniciar outros comportamentos
+        int fitness = 0;//TODO: Adquirir Fitness
+
+        register_solution();
+        
+        myAgent.addBehaviour(new SearchPartner(mySolution()));
+        //myAgent.addBehaviour(new GetOlder());
+    }
+    
+    private void register_solution(){
+     try{
+        DFService.register(mySolution(), mySolution().description());
+     }catch (FIPAException ex){
+        ex.printStackTrace();
+     }
+    }
+    
+    private Solution mySolution(){
+        return (Solution) myAgent;
     }
     
 }
