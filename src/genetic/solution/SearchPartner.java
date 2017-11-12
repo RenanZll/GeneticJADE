@@ -39,11 +39,11 @@ public class SearchPartner extends SimpleBehaviour {
             Logger.getLogger(SearchPartner.class.getName()).log(Level.SEVERE, null, ex);
         }
         Agent partner = partner(partner_description);//Implementar comunicação entre agentes(Dança do acasalamento)
-        myAgent.addBehaviour(new Reproduce(partner));
+        myAgent.addBehaviour(new Reproduce(myAgent, partner));
     }
     
     
-    public DFAgentDescription[] partner_list() throws FIPAException{
+    private DFAgentDescription[] partner_list() throws FIPAException{
         return DFService.search(myAgent, mySolution().partner_description());//É o próprio agente que é o primeiro parametro
     }
     
@@ -52,11 +52,11 @@ public class SearchPartner extends SimpleBehaviour {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public Solution mySolution(){
+    private Solution mySolution(){
         return (Solution) myAgent;
     }
     
-    public static DFAgentDescription randomPartnerDescription(DFAgentDescription[] array) {
+    private static DFAgentDescription randomPartnerDescription(DFAgentDescription[] array) {
         int rnd = new Random().nextInt(array.length);
         return array[rnd];
     }
