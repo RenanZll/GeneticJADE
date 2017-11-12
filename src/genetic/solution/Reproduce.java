@@ -5,22 +5,21 @@
  */
 package genetic.solution;
 
-import jade.core.behaviours.SimpleBehaviour;
+import jade.core.Agent;
+import jade.core.behaviours.OneShotBehaviour;
 
 /**
  *
  * @author altargin
  */
-public class Reproduce extends SimpleBehaviour {
+public class Reproduce extends OneShotBehaviour {
+
+    Reproduce(Agent partner) {
+        super(partner);
+    }
 
     @Override
     public void action() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean done() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    }    
 }
