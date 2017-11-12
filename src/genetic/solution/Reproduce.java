@@ -14,12 +14,25 @@ import jade.core.behaviours.OneShotBehaviour;
  */
 public class Reproduce extends OneShotBehaviour {
 
-    Reproduce(Agent partner) {
-        super(partner);
+    Solution partner;
+    Reproduce(Agent my_agent,Agent partner) {
+        super(my_agent);
+        this.partner = (Solution) partner;
     }
 
     @Override
     public void action() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }    
+        Chromossome child_chromossome = 
+                myChromossome().crossover(partner.getChromossome());
+        new Solution(child_chromossome);
+        mySolution().getOlder();
+    }
+    
+    private Solution mySolution() {
+        return (Solution) myAgent;
+    }
+    
+    private Chromossome myChromossome(){
+        return mySolution().getChromossome();
+    }
 }
