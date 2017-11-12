@@ -9,8 +9,11 @@ import jade.core.Agent;
 import jade.core.behaviours.SimpleBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
+import jade.domain.FIPAAgentManagement.Property;
+import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
-import jade.lang.acl.ACLMessage;
+import java.util.Iterator;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,33 +31,44 @@ public class SearchPartner extends SimpleBehaviour {
 
     
     @Override
-    public void action() {
-        
-        ACLMessage reproductionPropose = new ACLMessage(ACLMessage.PROPOSE);
-//        reproductionPropose.addReceiver(new AID(receiver));
-//        reproductionPropose.setContent("<content>");
-        
-    }
-    
-    private Agent choosen_partner(){
-        return new Agent();
-    }
-    
-    private DFAgentDescription[] partner_list(){
+    public void action() {   
+        DFAgentDescription partner_description = null;
         try {
-            DFService.search(myAgent, mySolution().partner_description());//É o próprio agente que é o primeiro parametro
+             partner_description =  randomPartnerDescription(partner_list());
         } catch (FIPAException ex) {
             Logger.getLogger(SearchPartner.class.getName()).log(Level.SEVERE, null, ex);
         }
+        Agent partner = partner(partner_description);//Implementar comunicação entre agentes(Dança do acasalamento)
+        myAgent.addBehaviour(new Reproduce(partner));
     }
-
+    
+    
+    public DFAgentDescription[] partner_list() throws FIPAException{
+        return DFService.search(myAgent, mySolution().partner_description());//É o próprio agente que é o primeiro parametro
+    }
+    
     @Override
     public boolean done() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    private Solution mySolution() {
+    public Solution mySolution(){
         return (Solution) myAgent;
     }
     
+    public static DFAgentDescription randomPartnerDescription(DFAgentDescription[] array) {
+        int rnd = new Random().nextInt(array.length);
+        return array[rnd];
+    }
+
+    private Solution partner(DFAgentDescription partner_description) {
+        ServiceDescription reproduction = (ServiceDescription) partner_description.getAllServices().next();
+        Iterator properties = reproduction.getAllProperties();
+        while(properties.hasNext()){
+            Property property = (Property) properties.next();
+            if("SELF".equals(property.getName()))
+                return (Solution) property.getValue();
+        }
+        return null;
+    }
 }

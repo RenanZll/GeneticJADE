@@ -52,13 +52,19 @@ public class Solution extends Agent {
     private Property fitness_property() {
         Property fitness_property = new Property();
         fitness_property.setName("FITNESS");
-        fitness_property.setValue(fitnessValue);
+        fitness_property.setValue(this.fitnessValue);
+        return fitness_property;
+    }
+    
+    private Property chromossome_property() {
+        Property fitness_property = new Property();
+        fitness_property.setName("SELF");
+        fitness_property.setValue(this);
         return fitness_property;
     }
     
     public DFAgentDescription partner_description() {
         DFAgentDescription agent_description = new DFAgentDescription();
-        agent_description.setName(getAID());
         agent_description.addServices(reproduction_service_without_fitness());
         return agent_description;
     }
