@@ -34,6 +34,10 @@ public class Solution extends Agent {
         return this.chromossome;
     }
     
+    public void getOlder(){
+        age++;
+    }
+    
     public DFAgentDescription description(){
         DFAgentDescription agent_description = new DFAgentDescription();
         agent_description.setName(getAID());
