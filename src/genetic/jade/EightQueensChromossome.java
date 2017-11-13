@@ -14,7 +14,7 @@ import java.util.Random;
  */
 public class EightQueensChromossome implements Chromossome {
     protected int[] genes = new int[8];
-    private Random rnd  = new Random();;
+    private Random rnd  = new Random();
     
     public EightQueensChromossome() {
         for(int i = 0; i < genes.length; i++)

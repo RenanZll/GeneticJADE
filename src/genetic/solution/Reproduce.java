@@ -36,7 +36,7 @@ public class Reproduce extends OneShotBehaviour {
     private void register_new_solution(String name, Chromossome chromossome){
         GeneticAlgorithm ga = new GeneticAlgorithm(mySolution().getContainerController());
         Object[] solution_parameters = {chromossome};
-        ga.addAgent(name, Solution.class, solution_parameters);
+        ga.addSolution(name, chromossome);
     }
     
     private Solution mySolution() {

@@ -9,7 +9,6 @@ import genetic.solution.Chromossome;
 import genetic.solution.Solution;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
-import jade.wrapper.AgentController;
 import jade.wrapper.ContainerController;
 import jade.wrapper.StaleProxyException;
 
