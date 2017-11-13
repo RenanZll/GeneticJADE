@@ -8,9 +8,6 @@ package genetic.solution;
 import jade.core.Agent;
 import jade.core.behaviours.OneShotBehaviour;
 import jade.domain.DFService;
-import jade.domain.FIPAAgentManagement.DFAgentDescription;
-import jade.domain.FIPAAgentManagement.Property;
-import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
 
 /**
@@ -25,8 +22,9 @@ public class Born extends OneShotBehaviour{
 
     @Override
     public void action() {
+        System.out.println("Nascendo...");
         int fitness = 0;//TODO: Adquirir Fitness
-
+        mySolution().setFitness(fitness);
         register_solution();
         
         myAgent.addBehaviour(new SearchPartner(mySolution()));
@@ -39,6 +37,7 @@ public class Born extends OneShotBehaviour{
      }catch (FIPAException ex){
         ex.printStackTrace();
      }
+     System.out.println("Registrado nas paginas amarelas!");
     }
     
     private Solution mySolution(){
