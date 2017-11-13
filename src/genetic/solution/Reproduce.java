@@ -5,8 +5,10 @@
  */
 package genetic.solution;
 
+import genetic.jade.GeneticAlgorithm;
 import jade.core.Agent;
 import jade.core.behaviours.OneShotBehaviour;
+import java.util.Random;
 
 /**
  *
@@ -22,10 +24,19 @@ public class Reproduce extends OneShotBehaviour {
 
     @Override
     public void action() {
-        Chromossome child_chromossome = 
-                myChromossome().crossover(partner.getChromossome());
-        new Solution(child_chromossome);
+        Chromossome child_chromossome = reproduce();
+        register_new_solution(generateRandomName(), child_chromossome);
         mySolution().getOlder();
+    }
+    
+    private Chromossome reproduce(){
+        return myChromossome().crossover(partner.getChromossome());
+    }
+    
+    private void register_new_solution(String name, Chromossome chromossome){
+        GeneticAlgorithm ga = new GeneticAlgorithm(mySolution().getContainerController());
+        Object[] solution_parameters = {chromossome};
+        ga.addAgent(name, Solution.class, solution_parameters);
     }
     
     private Solution mySolution() {
@@ -34,5 +45,16 @@ public class Reproduce extends OneShotBehaviour {
     
     private Chromossome myChromossome(){
         return mySolution().getChromossome();
+    }
+    
+    private String generateRandomName(){
+        char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < 7; i++) {
+            char c = chars[random.nextInt(chars.length)];
+            sb.append(c);
+        }
+        return sb.toString();
     }
 }
