@@ -58,7 +58,9 @@ public class Solution extends Agent {
         ServiceDescription reproduction_description = new ServiceDescription();
         reproduction_description.setName("Reproduce");
         reproduction_description.setOwnership("Solution");
+        reproduction_description.setType("BasicNeeds");
         reproduction_description.addProperties(fitness_property());
+        reproduction_description.addProperties(self_property());
         return reproduction_description;
     }
     
@@ -69,7 +71,7 @@ public class Solution extends Agent {
         return fitness_property;
     }
     
-    private Property chromossome_property() {
+    private Property self_property() {
         Property fitness_property = new Property();
         fitness_property.setName("SELF");
         fitness_property.setValue(this);
@@ -86,6 +88,8 @@ public class Solution extends Agent {
         ServiceDescription reproduction_description = new ServiceDescription();
         reproduction_description.setName("Reproduce");
         reproduction_description.setOwnership("Solution");
+        reproduction_description.setType("BasicNeeds");
+        reproduction_description.addProperties(self_property());
         return reproduction_description;
     }
 }
