@@ -20,14 +20,19 @@ public class Solution extends Agent {
     private Integer  age = 0;
     private Integer fitnessValue;
     
-    public Solution(Chromossome chromossome) {
+    public Solution() {
         super();
-        this.chromossome = chromossome;
     }
     
     @Override
     protected void setup() {
+        loadChromossome();
+        System.out.println("Inicializando Solution: " + this.getName());
         addBehaviour(new Born(this));
+    }
+    
+    private void loadChromossome(){
+        this.chromossome = (Chromossome) this.getArguments()[0];
     }
     
     public Chromossome getChromossome(){
