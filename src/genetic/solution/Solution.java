@@ -47,6 +47,11 @@ public class Solution extends Agent {
         this.fitnessValue = fitnessValue;
     }
     
+    
+    public int getAge() {
+        return this.age;
+    }
+    
     public DFAgentDescription description(){
         DFAgentDescription agent_description = new DFAgentDescription();
         agent_description.setName(getAID());

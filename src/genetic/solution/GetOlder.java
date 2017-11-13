@@ -5,22 +5,32 @@
  */
 package genetic.solution;
 
-import jade.core.behaviours.SimpleBehaviour;
+import jade.core.behaviours.CyclicBehaviour;
+import java.util.Random;
 
 /**
  *
  * @author altargin
  */
-public class GetOlder extends SimpleBehaviour {
+public class GetOlder extends CyclicBehaviour {
+
+    private Solution solution;
+    
+    static final int SUCCEDED_REPRODUCTIONS = 2;
+    
+    public GetOlder(Solution solution) {
+        this.solution = solution;
+    }
 
     @Override
     public void action() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean done() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        Random rnd = new Random();
+        float death = rnd.nextFloat();
+        float live_probability = 1 - (solution.getAge() / SUCCEDED_REPRODUCTIONS);
+        if(death >= live_probability) killSolution();
+    }    
     
+    public void killSolution(){
+        solution.says("I'm dead! :(");
+    }
 }
