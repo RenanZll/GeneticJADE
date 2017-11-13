@@ -17,7 +17,7 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 public class Solution extends Agent {
 
     private Chromossome chromossome;
-    private Integer age;
+    private Integer  age = 0;
     private Integer fitnessValue;
     
     public Solution(Chromossome chromossome) {
@@ -36,6 +36,10 @@ public class Solution extends Agent {
     
     public void getOlder(){
         age++;
+    }
+    
+    public void setFitness(int fitnessValue){
+        this.fitnessValue = fitnessValue;
     }
     
     public DFAgentDescription description(){
