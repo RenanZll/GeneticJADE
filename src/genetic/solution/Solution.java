@@ -92,4 +92,8 @@ public class Solution extends Agent {
         reproduction_description.addProperties(self_property());
         return reproduction_description;
     }
+    
+    public void says(String text){
+        System.out.println(getName() + ": " + text);
+    }
 }

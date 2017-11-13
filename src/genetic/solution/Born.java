@@ -22,7 +22,7 @@ public class Born extends OneShotBehaviour{
 
     @Override
     public void action() {
-        System.out.println("Nascendo...");
+        mySolution().says("Nascendo...");
         int fitness = 0;//TODO: Adquirir Fitness
         mySolution().setFitness(fitness);
         register_solution();
@@ -37,7 +37,7 @@ public class Born extends OneShotBehaviour{
      }catch (FIPAException ex){
         ex.printStackTrace();
      }
-     System.out.println("Registrado nas paginas amarelas!");
+     mySolution().says("Registrado nas paginas amarelas!");
     }
     
     private Solution mySolution(){

@@ -32,7 +32,7 @@ public class SearchPartner extends SimpleBehaviour {
     
     @Override
     public void action() {
-        System.out.println("Procurando por parceiros...");
+        mySolution().says("Procurando por parceiros...");
         DFAgentDescription partner_description = null;
         try {
              partner_description =  randomPartnerDescription(partner_list());
@@ -40,7 +40,7 @@ public class SearchPartner extends SimpleBehaviour {
             Logger.getLogger(SearchPartner.class.getName()).log(Level.SEVERE, null, ex);
         }
         Agent partner = mySolution();// partner(partner_description);//Implementar comunicação entre agentes(Dança do acasalamento)
-        System.out.println("Nome do Parceiro: " + partner.getName());
+        mySolution().says("Nome do Parceiro: " + partner.getName());
         myAgent.addBehaviour(new Reproduce(myAgent, partner));
     }
     
