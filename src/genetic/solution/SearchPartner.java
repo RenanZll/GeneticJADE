@@ -31,14 +31,16 @@ public class SearchPartner extends SimpleBehaviour {
 
     
     @Override
-    public void action() {   
+    public void action() {
+        System.out.println("Procurando por parceiros...");
         DFAgentDescription partner_description = null;
         try {
              partner_description =  randomPartnerDescription(partner_list());
         } catch (FIPAException ex) {
             Logger.getLogger(SearchPartner.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Agent partner = partner(partner_description);//Implementar comunicação entre agentes(Dança do acasalamento)
+        Agent partner = mySolution();// partner(partner_description);//Implementar comunicação entre agentes(Dança do acasalamento)
+        System.out.println("Nome do Parceiro: " + partner.getName());
         myAgent.addBehaviour(new Reproduce(myAgent, partner));
     }
     
@@ -49,7 +51,7 @@ public class SearchPartner extends SimpleBehaviour {
     
     @Override
     public boolean done() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
     
     private Solution mySolution(){
