@@ -51,51 +51,9 @@ public class Solution extends Agent {
     public int getAge() {
         return this.age;
     }
-    
+       
     public DFAgentDescription description(){
-        DFAgentDescription agent_description = new DFAgentDescription();
-        agent_description.setName(getAID());
-        agent_description.addServices(reproduction_service());
-        return agent_description;
-    }
-    
-    private ServiceDescription reproduction_service(){
-        ServiceDescription reproduction_description = new ServiceDescription();
-        reproduction_description.setName("Reproduce");
-        reproduction_description.setOwnership("Solution");
-        reproduction_description.setType("BasicNeeds");
-        reproduction_description.addProperties(fitness_property());
-        reproduction_description.addProperties(self_property());
-        return reproduction_description;
-    }
-    
-    private Property fitness_property() {
-        Property fitness_property = new Property();
-        fitness_property.setName("FITNESS");
-        fitness_property.setValue(this.fitnessValue);
-        return fitness_property;
-    }
-    
-    private Property self_property() {
-        Property fitness_property = new Property();
-        fitness_property.setName("SELF");
-        fitness_property.setValue(this);
-        return fitness_property;
-    }
-    
-    public DFAgentDescription partner_description() {
-        DFAgentDescription agent_description = new DFAgentDescription();
-        agent_description.addServices(reproduction_service_without_fitness());
-        return agent_description;
-    }
-    
-    private ServiceDescription reproduction_service_without_fitness() {
-        ServiceDescription reproduction_description = new ServiceDescription();
-        reproduction_description.setName("Reproduce");
-        reproduction_description.setOwnership("Solution");
-        reproduction_description.setType("BasicNeeds");
-        reproduction_description.addProperties(self_property());
-        return reproduction_description;
+        return SolutionDescription.individual(getAID(), fitnessValue);
     }
     
     public void says(String text){

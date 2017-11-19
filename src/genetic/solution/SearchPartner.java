@@ -46,7 +46,7 @@ public class SearchPartner extends CyclicBehaviour {
     
     
     private DFAgentDescription[] partner_list() throws FIPAException{
-        return DFService.search(myAgent, mySolution().partner_description());//É o próprio agente que é o primeiro parametro
+        return DFService.search(myAgent, SolutionDescription.general());//O próprio agente que é o primeiro parametro?
     }
     
     private Solution mySolution(){
