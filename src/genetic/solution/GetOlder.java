@@ -31,6 +31,7 @@ public class GetOlder extends CyclicBehaviour {
     }    
     
     public void killSolution(){
+        solution.doDelete();
         solution.says("I'm dead! :(");
     }
 }

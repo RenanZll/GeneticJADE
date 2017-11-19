@@ -23,21 +23,25 @@ public class Born extends OneShotBehaviour{
     @Override
     public void action() {
         mySolution().says("Nascendo...");
-        int fitness = 0;//TODO: Adquirir Fitness
-        mySolution().setFitness(fitness);
-        register_solution();
+        getFitness();
+        registerSolution();
         
         mySolution().addBehaviour(new SearchPartner(mySolution()));
         mySolution().addBehaviour(new GetOlder(mySolution()));
     }
     
-    private void register_solution(){
+    private void registerSolution(){
      try{
         DFService.register(mySolution(), mySolution().description());
      }catch (FIPAException ex){
         ex.printStackTrace();
      }
      mySolution().says("Registrado nas paginas amarelas!");
+    }
+    
+    private void getFitness(){
+        int fitness = 0;//TODO: Adquirir Fitness
+        mySolution().setFitness(fitness);
     }
     
     private Solution mySolution(){

@@ -12,6 +12,5 @@ package genetic.solution;
 public interface Chromossome {
 
     public Chromossome crossover(Chromossome chromossome);
-
     
 }

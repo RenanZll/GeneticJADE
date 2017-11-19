@@ -21,7 +21,7 @@ public class EightQueensChromossome implements Chromossome {
             genes[i] = rnd.nextInt(7);
     }
     
-    public EightQueensChromossome(int[] genes) {
+    private EightQueensChromossome(int[] genes) {
         this.genes = genes;
     }
     

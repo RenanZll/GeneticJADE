@@ -6,7 +6,7 @@
 package genetic.solution;
 
 import jade.core.Agent;
-import jade.core.behaviours.SimpleBehaviour;
+import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.Property;
@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  *
  * @author altargin
  */
-public class SearchPartner extends SimpleBehaviour {
+public class SearchPartner extends CyclicBehaviour {
 
     
     SearchPartner(Agent agent) {
@@ -47,11 +47,6 @@ public class SearchPartner extends SimpleBehaviour {
     
     private DFAgentDescription[] partner_list() throws FIPAException{
         return DFService.search(myAgent, mySolution().partner_description());//É o próprio agente que é o primeiro parametro
-    }
-    
-    @Override
-    public boolean done() {
-        return false;
     }
     
     private Solution mySolution(){
