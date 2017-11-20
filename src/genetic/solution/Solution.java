@@ -7,8 +7,6 @@ package genetic.solution;
 
 import jade.core.Agent;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
-import jade.domain.FIPAAgentManagement.Property;
-import jade.domain.FIPAAgentManagement.ServiceDescription;
 
 /**
  *
@@ -19,10 +17,6 @@ public class Solution extends Agent {
     private Chromossome chromossome;
     private Integer  age = 0;
     private Integer fitnessValue;
-    
-    public Solution() {
-        super();
-    }
     
     @Override
     protected void setup() {
