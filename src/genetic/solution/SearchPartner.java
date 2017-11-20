@@ -9,10 +9,8 @@ import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
-import jade.domain.FIPAAgentManagement.Property;
-import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
-import java.util.Iterator;
+import jade.lang.acl.ACLMessage;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,23 +23,32 @@ import java.util.logging.Logger;
 public class SearchPartner extends CyclicBehaviour {
 
     
+    Random rnd;
+    
     SearchPartner(Agent agent) {
         super(agent);
+        rnd = new Random();
     }
 
     
     @Override
     public void action() {
-        mySolution().says("Procurando por parceiros...");
-        DFAgentDescription partner_description = null;
+        DFAgentDescription partner = null;
         try {
-             partner_description =  randomPartnerDescription(partner_list());
-        } catch (FIPAException ex) {
+             partner =  randomPartnerDescription(partner_list());
+             mate_with(partner);
+             Thread.sleep(rnd.nextInt(10)*1000);
+        } catch (FIPAException | InterruptedException ex) {
             Logger.getLogger(SearchPartner.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Agent partner = mySolution();// partner(partner_description);//Implementar comunicação entre agentes(Dança do acasalamento)
-        mySolution().says("Nome do Parceiro: " + partner.getName());
-        myAgent.addBehaviour(new Reproduce(myAgent, partner));
+    }
+    
+    private void mate_with(DFAgentDescription partner){
+        ACLMessage msg = new ACLMessage(ACLMessage.PROPOSE);
+        msg.addReceiver(partner.getName());
+        msg.setContent("Reproduction");
+        myAgent.send(msg);
+        mySolution().says("Enviando proposta para " + partner.getName().getName());
     }
     
     
@@ -53,19 +60,7 @@ public class SearchPartner extends CyclicBehaviour {
         return (Solution) myAgent;
     }
     
-    private static DFAgentDescription randomPartnerDescription(DFAgentDescription[] array) {
-        int rnd = new Random().nextInt(array.length);
-        return array[rnd];
-    }
-
-    private Solution partner(DFAgentDescription partner_description) {
-        ServiceDescription reproduction = (ServiceDescription) partner_description.getAllServices().next();
-        Iterator properties = reproduction.getAllProperties();
-        while(properties.hasNext()){
-            Property property = (Property) properties.next();
-            if("SELF".equals(property.getName()))
-                return (Solution) property.getValue();
-        }
-        return null;
+    private DFAgentDescription randomPartnerDescription(DFAgentDescription[] array) {
+        return array[rnd.nextInt(array.length)];
     }
 }
