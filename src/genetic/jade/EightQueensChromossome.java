@@ -24,23 +24,27 @@ public class EightQueensChromossome implements Chromossome {
     private EightQueensChromossome(int[] genes) {
         this.genes = genes;
     }
-    
-    public int[] getGenes(){
-        return genes;
-    }
-    
 
+    @Override
     public Chromossome crossover(Chromossome chromossome) {
         EightQueensChromossome eq_chromossome = (EightQueensChromossome) chromossome;
         int break_position = rnd.nextInt(7);
         int[] crossed_genes = new int[7]; 
         for(int i = 0; i < crossed_genes.length; i++){
             if(i <= break_position)
-                crossed_genes[i] = this.getGenes()[i];
+                crossed_genes[i] = this.genes[i];
             else
-                crossed_genes[i] = eq_chromossome.getGenes()[i];
+                crossed_genes[i] = eq_chromossome.genes[i];
         }
+        print(crossed_genes);
         return new EightQueensChromossome(crossed_genes);
     }
     
+    private void print(int[] genes){
+        String to_s = " [";
+        for(int i = 0; i < genes.length; i++)
+            to_s += genes[i] + " ";
+        System.out.println(to_s+"]");
+    }
 }
+
