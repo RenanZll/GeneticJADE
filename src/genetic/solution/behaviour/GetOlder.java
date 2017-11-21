@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package genetic.solution;
+package genetic.solution.behaviour;
 
+import genetic.solution.Solution;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
@@ -34,7 +35,7 @@ public class GetOlder extends CyclicBehaviour {
         if(death >= live_probability) killSolution();
     }    
     
-    public void killSolution(){
+    private void killSolution(){
         try {
             DFService.deregister(solution);
             solution.doDelete();

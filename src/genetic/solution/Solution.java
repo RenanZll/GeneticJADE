@@ -5,7 +5,9 @@
  */
 package genetic.solution;
 
+import genetic.solution.behaviour.Born;
 import jade.core.Agent;
+import jade.core.behaviours.Behaviour;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 
 /**

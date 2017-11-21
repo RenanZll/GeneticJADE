@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package genetic.solution;
+package genetic.solution.behaviour;
 
+import genetic.solution.Solution;
 import jade.core.Agent;
 import jade.core.behaviours.OneShotBehaviour;
 import jade.domain.DFService;
@@ -16,7 +17,7 @@ import jade.domain.FIPAException;
  */
 public class Born extends OneShotBehaviour{
 
-    Born(Agent agent) {
+    public Born(Agent agent) {
         super(agent);
     }
 

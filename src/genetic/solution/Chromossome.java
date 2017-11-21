@@ -5,6 +5,7 @@
  */
 package genetic.solution;
 
+import genetic.mutator.Mutation;
 import java.io.Serializable;
 
 /**
@@ -15,4 +16,5 @@ public interface Chromossome extends Serializable {
 
     public Chromossome crossover(Chromossome chromossome);
     
+    public void mutate(Mutation mutator);
 }

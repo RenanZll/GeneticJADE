@@ -5,6 +5,7 @@
  */
 package genetic.jade;
 
+import genetic.mutator.Mutation;
 import genetic.solution.Chromossome;
 import java.util.Random;
 
@@ -45,6 +46,11 @@ public class EightQueensChromossome implements Chromossome {
         for(int i = 0; i < genes.length; i++)
             to_s += genes[i] + " ";
         System.out.println(to_s+"]");
+    }
+
+    @Override
+    public void mutate(Mutation mutator) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
 

@@ -3,10 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/renan/Documentos/WebSemantica/GeneticJADE/src/genetic/jade/EightQueensChromossome.java</file>
-            <file>file:/home/renan/Documentos/WebSemantica/GeneticJADE/src/genetic/solution/Reproduce.java</file>
-            <file>file:/home/renan/Documentos/WebSemantica/GeneticJADE/src/genetic/solution/Born.java</file>
+            <file>file:/home/renan/Documentos/WebSemantica/GeneticJADE/src/genetic/solution/SolutionDescription.java</file>
+            <file>file:/home/renan/Documentos/WebSemantica/GeneticJADE/src/genetic/solution/behaviour/GetOlder.java</file>
+            <file>file:/home/renan/Documentos/WebSemantica/GeneticJADE/src/genetic/mutator/Mutator.java</file>
+            <file>file:/home/renan/Documentos/WebSemantica/GeneticJADE/src/genetic/solution/behaviour/RespondToInterest.java</file>
+            <file>file:/home/renan/Documentos/WebSemantica/GeneticJADE/src/genetic/jade/GeneticAlgorithm.java</file>
+            <file>file:/home/renan/Documentos/WebSemantica/GeneticJADE/src/genetic/mutator/Mutation.java</file>
+            <file>file:/home/renan/Documentos/WebSemantica/GeneticJADE/src/genetic/mutator/MutateAgent.java</file>
+            <file>file:/home/renan/Documentos/WebSemantica/GeneticJADE/src/genetic/solution/behaviour/Reproduce.java</file>
+            <file>file:/home/renan/Documentos/WebSemantica/GeneticJADE/src/genetic/solution/behaviour/SearchPartner.java</file>
+            <file>file:/home/renan/Documentos/WebSemantica/GeneticJADE/src/genetic/jade/Main.java</file>
             <file>file:/home/renan/Documentos/WebSemantica/GeneticJADE/src/genetic/solution/Chromossome.java</file>
+            <file>file:/home/renan/Documentos/WebSemantica/GeneticJADE/src/genetic/solution/behaviour/Born.java</file>
         </group>
     </open-files>
 </project-private>

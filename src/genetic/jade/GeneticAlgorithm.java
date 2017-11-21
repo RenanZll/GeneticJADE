@@ -29,7 +29,7 @@ public class GeneticAlgorithm {
     }
     
     
-    public void startMainContainer(String host, String port, String name) {
+    private void startMainContainer(String host, String port, String name) {
         jade.core.Runtime runtime = jade.core.Runtime.instance();
         Profile profile = new ProfileImpl();
         profile.setParameter(Profile.MAIN_HOST, host);
