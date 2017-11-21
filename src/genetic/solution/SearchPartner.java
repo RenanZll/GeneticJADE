@@ -5,12 +5,14 @@
  */
 package genetic.solution;
 
+import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAException;
 import jade.lang.acl.ACLMessage;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +24,6 @@ import java.util.logging.Logger;
  */
 public class SearchPartner extends CyclicBehaviour {
 
-    
     Random rnd;
     
     SearchPartner(Agent agent) {
@@ -30,20 +31,19 @@ public class SearchPartner extends CyclicBehaviour {
         rnd = new Random();
     }
 
-    
     @Override
     public void action() {
         DFAgentDescription partner = null;
         try {
-             partner =  randomPartnerDescription(partner_list());
-             mate_with(partner);
+             partner =  randomPartnerDescription(partnerList());
+             mateWith(partner);
              Thread.sleep(rnd.nextInt(10)*1000);
         } catch (FIPAException | InterruptedException ex) {
             Logger.getLogger(SearchPartner.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    private void mate_with(DFAgentDescription partner){
+    private void mateWith(DFAgentDescription partner){
         ACLMessage msg = new ACLMessage(ACLMessage.PROPOSE);
         msg.addReceiver(partner.getName());
         msg.setContent("Reproduction");
@@ -52,8 +52,24 @@ public class SearchPartner extends CyclicBehaviour {
     }
     
     
-    private DFAgentDescription[] partner_list() throws FIPAException{
-        return DFService.search(myAgent, SolutionDescription.general());//O próprio agente que é o primeiro parametro?
+    private DFAgentDescription[] partnerList() throws FIPAException{
+        DFAgentDescription[] solution_list =
+                DFService.search(myAgent, new SolutionDescription());
+                //O próprio agente que é o primeiro parametro?
+        return removeMySolutionFrom(solution_list);
+    }
+    
+    private DFAgentDescription[] removeMySolutionFrom(DFAgentDescription[] solutionList){
+        DFAgentDescription[] partners = Arrays.stream(solutionList)
+                .filter(partner -> dontHaveSameName(partner, mySolution()))
+                .toArray(DFAgentDescription[]::new);
+        return partners;
+    }
+    
+    private boolean dontHaveSameName(DFAgentDescription partner, Solution solution){
+        String partnerName = partner.getName().getName();
+        String selfName = mySolution().getAID().getName();
+        return !partnerName.equals(selfName);
     }
     
     private Solution mySolution(){

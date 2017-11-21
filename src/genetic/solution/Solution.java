@@ -47,7 +47,7 @@ public class Solution extends Agent {
     }
        
     public DFAgentDescription description(){
-        return SolutionDescription.individual(getAID(), fitnessValue);
+        return new SolutionDescription(getAID(), fitnessValue);
     }
     
     public void says(String text){
