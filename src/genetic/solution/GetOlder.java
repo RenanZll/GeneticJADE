@@ -6,7 +6,11 @@
 package genetic.solution;
 
 import jade.core.behaviours.CyclicBehaviour;
+import jade.domain.DFService;
+import jade.domain.FIPAException;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,7 +20,7 @@ public class GetOlder extends CyclicBehaviour {
 
     private Solution solution;
     
-    static final int SUCCEDED_REPRODUCTIONS = 2;
+    static final float SUCCEDED_REPRODUCTIONS = 0.9f;
     
     public GetOlder(Solution solution) {
         this.solution = solution;
@@ -31,7 +35,12 @@ public class GetOlder extends CyclicBehaviour {
     }    
     
     public void killSolution(){
-        solution.doDelete();
-        solution.says("I'm dead! :(");
+        try {
+            DFService.deregister(solution);
+            solution.doDelete();
+            solution.says("I'm dead! :(");
+        } catch (FIPAException ex) {
+            Logger.getLogger(GetOlder.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

@@ -27,6 +27,8 @@ public class Born extends OneShotBehaviour{
         registerSolution();
         
         mySolution().addBehaviour(new SearchPartner(mySolution()));
+        mySolution().addBehaviour(new RespondToInterest(mySolution()));
+        mySolution().addBehaviour(new Reproduce(mySolution()));
         mySolution().addBehaviour(new GetOlder(mySolution()));
     }
     

@@ -5,11 +5,13 @@
  */
 package genetic.solution;
 
+import java.io.Serializable;
+
 /**
  *
  * @author renan
  */
-public interface Chromossome {
+public interface Chromossome extends Serializable {
 
     public Chromossome crossover(Chromossome chromossome);
     
