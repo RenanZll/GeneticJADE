@@ -22,6 +22,7 @@ public class Solution extends Agent {
     protected void setup() {
         loadChromossome();
         System.out.println("Inicializando Solution: " + this.getName());
+        requestFitness();
         addBehaviour(new Born(this));
     }
     
@@ -52,5 +53,10 @@ public class Solution extends Agent {
     
     public void says(String text){
         System.out.println(getName() + ": " + text);
+    }
+
+    private void requestFitness() {
+        FitnessRequester fitnessRequester = new FitnessRequester(this);
+        fitnessRequester.request();
     }
 }
