@@ -14,13 +14,22 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
  *
  * @author renan
  */
-public class SolutionDescription extends DFAgentDescription {
+public class DFSolutionDescription extends DFAgentDescription {
     
-    public SolutionDescription() {
+    
+    public static DFSolutionDescription for_register(AID aid, Integer fitness){
+        return new DFSolutionDescription(aid, fitness);
+    }
+    
+    public static DFSolutionDescription for_search() {
+        return new DFSolutionDescription();
+    }
+    
+    public DFSolutionDescription() {
         addServices(generalReproductionService());
     }
 
-    public SolutionDescription(AID aid, Integer fitness){
+    public DFSolutionDescription(AID aid, Integer fitness){
         setName(aid);
         addServices(individualReproductionService(fitness));
     }

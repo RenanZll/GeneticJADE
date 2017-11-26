@@ -5,7 +5,6 @@
  */
 package genetic.solution;
 
-import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.DFService;
@@ -54,8 +53,7 @@ public class SearchPartner extends CyclicBehaviour {
     
     private DFAgentDescription[] partnerList() throws FIPAException{
         DFAgentDescription[] solution_list =
-                DFService.search(myAgent, new SolutionDescription());
-                //O próprio agente que é o primeiro parametro?
+                DFService.search(myAgent, DFSolutionDescription.for_search());
         return removeMySolutionFrom(solution_list);
     }
     
