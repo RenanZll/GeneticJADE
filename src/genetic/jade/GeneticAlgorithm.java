@@ -5,6 +5,7 @@
  */
 package genetic.jade;
 
+import genetic.evaluator.Evaluator;
 import genetic.solution.Chromossome;
 import genetic.solution.Solution;
 import jade.core.Profile;
@@ -54,6 +55,16 @@ public class GeneticAlgorithm {
             Object[] solution_parameters = { chromossome };
             containerController
                     .createNewAgent(agent, Solution.class.getName(), solution_parameters)
+                    .start();
+        } catch (StaleProxyException s) {
+            s.printStackTrace();
+        }
+    }
+    
+    public void addEvaluator(String agent){
+        try {
+            containerController
+                    .createNewAgent(agent, Evaluator.class.getName(), null)
                     .start();
         } catch (StaleProxyException s) {
             s.printStackTrace();
