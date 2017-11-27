@@ -5,6 +5,7 @@
  */
 package genetic.solution;
 
+
 import jade.core.Agent;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 
@@ -22,8 +23,11 @@ public class Solution extends Agent {
     protected void setup() {
         loadChromossome();
         System.out.println("Inicializando Solution: " + this.getName());
+        requestFitness();
         addBehaviour(new Born(this));
     }
+    
+
     
     private void loadChromossome(){
         this.chromossome = (Chromossome) this.getArguments()[0];
@@ -47,10 +51,15 @@ public class Solution extends Agent {
     }
        
     public DFAgentDescription description(){
-        return new SolutionDescription(getAID(), fitnessValue);
+        return DFSolutionDescription.for_register(getAID(), fitnessValue);
     }
     
     public void says(String text){
         System.out.println(getName() + ": " + text);
+    }
+
+    private void requestFitness() {
+        FitnessRequester fitnessRequester = new FitnessRequester(this);
+        fitnessRequester.request();
     }
 }

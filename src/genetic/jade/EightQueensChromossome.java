@@ -6,7 +6,9 @@
 package genetic.jade;
 
 import genetic.solution.Chromossome;
+import static java.lang.Math.abs;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 /**
  *
@@ -18,7 +20,7 @@ public class EightQueensChromossome implements Chromossome {
     
     public EightQueensChromossome() {
         for(int i = 0; i < genes.length; i++)
-            genes[i] = rnd.nextInt(7);
+            genes[i] = rnd.nextInt(8);
     }
     
     private EightQueensChromossome(int[] genes) {
@@ -28,8 +30,8 @@ public class EightQueensChromossome implements Chromossome {
     @Override
     public Chromossome crossover(Chromossome chromossome) {
         EightQueensChromossome eq_chromossome = (EightQueensChromossome) chromossome;
-        int break_position = rnd.nextInt(7);
-        int[] crossed_genes = new int[7]; 
+        int break_position = rnd.nextInt(8);
+        int[] crossed_genes = new int[8]; 
         for(int i = 0; i < crossed_genes.length; i++){
             if(i <= break_position)
                 crossed_genes[i] = this.genes[i];
@@ -45,6 +47,31 @@ public class EightQueensChromossome implements Chromossome {
         for(int i = 0; i < genes.length; i++)
             to_s += genes[i] + " ";
         System.out.println(to_s+"]");
+    }
+
+    @Override
+    public int fitness() {  
+        int row_col_clashes = abs(genes.length - unique(genes).length);
+        int clashes = row_col_clashes;
+        for(int i=0; i>genes.length; i++){
+            for(int j=0; j>genes.length; j++){
+                if(i!=j){
+                    int dx = abs(i-j);
+                    int dy = abs(genes[i] - genes[j]);
+                    if(dx == dy) clashes++;
+                }
+            }         
+        }
+        return 28 - clashes;
+    }
+    
+    private int[] unique(int[] genes){
+        return IntStream.of(genes).distinct().toArray();
+    }
+
+    @Override
+    public void mutate() {
+        
     }
 }
 
