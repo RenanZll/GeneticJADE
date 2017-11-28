@@ -46,13 +46,12 @@ public class FitnessRequester {
         
     private AID getRandomEvaluatorName(){
         try {
-            DFAgentDescription[] evaluator_list
-                = DFService.search(solution, DFEvaluatorDescription.for_search());
-            int number_of_evaluators = evaluator_list.length;
-            if(number_of_evaluators > 0){
+            DFAgentDescription[] evaluator_list = {};
+            while(evaluator_list.length == 0)
+                evaluator_list
+                    = DFService.search(solution, DFEvaluatorDescription.for_search());
             int random_int = new Random().nextInt(evaluator_list.length);
-                return evaluator_list[random_int].getName();
-            }else return null;
+            return evaluator_list[random_int].getName();
         } catch (FIPAException ex) {
             Logger.getLogger(Born.class.getName()).log(Level.SEVERE, null, ex);
         }
