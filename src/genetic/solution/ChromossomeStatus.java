@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package genetic.reporter;
+package genetic.solution;
 
 /**
  *
- * @author renan
+ * @author altargin
  */
-public interface StopCondition {
-    public boolean check(EnvironmentState environmentState);
+public enum ChromossomeStatus {
+    Alive,
+    Dead
 }

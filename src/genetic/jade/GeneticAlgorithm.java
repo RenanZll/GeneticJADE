@@ -6,6 +6,8 @@
 package genetic.jade;
 
 import genetic.evaluator.Evaluator;
+import genetic.reporter.Reporter;
+import genetic.reporter.StopCondition;
 import genetic.solution.Chromossome;
 import genetic.solution.Solution;
 import jade.core.Profile;
@@ -65,6 +67,17 @@ public class GeneticAlgorithm {
         try {
             containerController
                     .createNewAgent(agent, Evaluator.class.getName(), null)
+                    .start();
+        } catch (StaleProxyException s) {
+            s.printStackTrace();
+        }
+    }
+
+    void AddReporter(String agent, StopCondition stopCondition) {
+        try {
+            Object[] reporter_parameters = {stopCondition};
+            containerController
+                    .createNewAgent(agent, Reporter.class.getName(), reporter_parameters)
                     .start();
         } catch (StaleProxyException s) {
             s.printStackTrace();
