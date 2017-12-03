@@ -50,7 +50,7 @@ public class EightQueensChromossome implements Chromossome {
     }
 
     @Override
-    public int fitness() {  
+    public double fitness() {  
         int row_col_clashes = abs(genes.length - unique(genes).length);
         int clashes = row_col_clashes;
         for(int i=0; i>genes.length; i++){

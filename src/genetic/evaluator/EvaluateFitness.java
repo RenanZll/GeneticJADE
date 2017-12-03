@@ -58,7 +58,7 @@ public class EvaluateFitness extends CyclicBehaviour {
         try {
             ACLMessage answer = message.createReply();
             answer.setPerformative(ACLMessage.INFORM);
-            answer.setContentObject((int) chromossome.fitness());
+            answer.setContentObject((double) chromossome.fitness());
             return answer;
         } catch (IOException ex) {
             Logger.getLogger(EvaluateFitness.class.getName()).log(Level.SEVERE, null, ex);

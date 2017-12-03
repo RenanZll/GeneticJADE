@@ -16,7 +16,7 @@ public class Main {
             ga.addEvaluator("Valorador"+i);
         Thread.sleep(1000);
         for(int i=0; i<100; i++)
-            ga.addSolution("EvaOuAdao"+i, new EightQueensChromossome());
+            ga.addSolution("EvaOuAdao"+i, new MazeChromossome());
         
         //Mutator
         //ga.addAgent("Mutator", Mutator.class.getName(), null);

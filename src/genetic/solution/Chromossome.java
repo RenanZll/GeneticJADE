@@ -15,7 +15,7 @@ public interface Chromossome extends Serializable {
 
     public Chromossome crossover(Chromossome chromossome);
     
-    public int fitness();
+    public double fitness();
             
     public void mutate();
 }

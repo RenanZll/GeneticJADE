@@ -9,6 +9,8 @@ import jade.core.AID;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.Property;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
+import java.util.Arrays;
+import java.util.Iterator;
 
 /**
  *
@@ -17,7 +19,7 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 public class DFSolutionDescription extends DFAgentDescription {
     
     
-    public static DFSolutionDescription for_register(AID aid, Integer fitness){
+    public static DFSolutionDescription for_register(AID aid, Double fitness){
         return new DFSolutionDescription(aid, fitness);
     }
     
@@ -25,13 +27,23 @@ public class DFSolutionDescription extends DFAgentDescription {
         return new DFSolutionDescription();
     }
     
-    public DFSolutionDescription() {
+    private DFSolutionDescription() {
         addServices(generalReproductionService());
     }
 
-    public DFSolutionDescription(AID aid, Integer fitness){
+    private DFSolutionDescription(AID aid, double fitness){
         setName(aid);
         addServices(individualReproductionService(fitness));
+    }
+    
+    private DFSolutionDescription(DFAgentDescription agentDescription) {
+        setName(agentDescription.getName());
+        agentDescription.getAllServices().forEachRemaining(
+                service -> {
+                    addServices((ServiceDescription) service);
+                }
+        );
+
     }
     
     private ServiceDescription generalReproductionService() {
@@ -42,7 +54,7 @@ public class DFSolutionDescription extends DFAgentDescription {
         return reproductionDescription;
     }
     
-    private ServiceDescription individualReproductionService(Integer fitness) {
+    private ServiceDescription individualReproductionService(double fitness) {
         ServiceDescription individualReproductionService =
                 generalReproductionService();
         individualReproductionService
@@ -50,11 +62,26 @@ public class DFSolutionDescription extends DFAgentDescription {
         return individualReproductionService;
     }
     
-    private Property fitnessProperty(Integer fitness) {
+    private Property fitnessProperty(double fitness) {
         Property fitnessProperty = new Property();
         fitnessProperty.setName("FITNESS");
         fitnessProperty.setValue(fitness);
         return fitnessProperty;
+    }
+    
+    public double fitness(){
+         ServiceDescription reproduction = (ServiceDescription) getAllServices().next();
+         Iterator properties = reproduction.getAllProperties();
+         while(properties.hasNext()){
+             Property property = (Property) properties.next();
+             if("FITNESS".equals(property.getName()))
+                 return Double.parseDouble((String) property.getValue());
+         }
+        return 0;
+    }
+    
+    public static DFSolutionDescription parse(DFAgentDescription agentDescription){
+        return new DFSolutionDescription(agentDescription);
     }
     
 }

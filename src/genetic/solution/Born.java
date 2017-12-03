@@ -70,8 +70,8 @@ public class Born extends SimpleBehaviour{
 
     private void setFitness(ACLMessage message) {
         try {
-            mySolution.says("Fitness: " + String.valueOf((int) message.getContentObject()));
-            mySolution.setFitness((int) message.getContentObject());
+            mySolution.says("Fitness: " + String.valueOf((double) message.getContentObject()));
+            mySolution.setFitness((double) message.getContentObject());
         } catch (UnreadableException ex) {
             Logger.getLogger(Born.class.getName()).log(Level.SEVERE, null, ex);
         }

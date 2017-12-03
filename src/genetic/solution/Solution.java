@@ -17,7 +17,7 @@ public class Solution extends Agent {
 
     private Chromossome chromossome;
     private Integer  age = 0;
-    private Integer fitnessValue;
+    private double fitnessValue;
     
     @Override
     protected void setup() {
@@ -41,10 +41,13 @@ public class Solution extends Agent {
         age++;
     }
     
-    public void setFitness(int fitnessValue){
+    public void setFitness(double fitnessValue){
         this.fitnessValue = fitnessValue;
     }
-    
+
+    public double getFitness(){
+        return this.fitnessValue;
+    }    
     
     public int getAge() {
         return this.age;
