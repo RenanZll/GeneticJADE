@@ -19,24 +19,20 @@ public class Maze implements Serializable {
     private Point finish;
     
     public Maze(){
-        this.pelego = new Point(2, 2);
-        this.finish = new Point(13, 1);
+        this.pelego = new Point(4, 1);
+        this.finish = new Point(4, 3);
         initialize_layout();
     }
     
     private void initialize_layout(){
         layout = new boolean[][]
         {
-            {false,false,false,false,false,false,false,false,false,false,false,false,false,false,false},
-            {false,true,true,true,true,true,true,false,true,true,false,true,true,true,false},
-            {false,true,false,true,false,false,true,false,true,false,true,false,true,true,false},
-            {false,true,false,true,true,false,true,false,true,false,true,true,true,true,false},
-            {false,true,false,true,true,false,true,false,true,false,true,false,false,false,false},
-            {false,true,false,true,false,false,true,true,true,false,true,false,true,true,false},
-            {false,true,false,true,false,true,false,false,true,false,true,false,false,true,false},
-            {false,true,false,false,false,true,true,true,true,true,true,false,false,true,false},
-            {false,true,true,false,true,true,false,false,false,false,true,true,false,true,false},
-            {false,false,false,false,false,false,false,false,false,false,false,false,false,false,false}
+            {false,false,false,false,false},
+            {false,true,true,true,false},
+            {false,true,false,true,false},
+            {false,true,false,true,false},
+            {false,true,false,true,false},
+            {false,false,false,false,false}
         };
     }
     
@@ -52,7 +48,7 @@ public class Maze implements Serializable {
         return layout.length;
     }
     
-    public boolean goTo(int direction){
+    private Point goTo(int direction){
         switch(direction){
             case 0:
                 return north();
@@ -63,30 +59,37 @@ public class Maze implements Serializable {
             case 3:
                 return west();
         }
-        return false;
+        return null;
     }
     
     public double distanceToFinish(){
         return pelego.distance(finish);
     }
     
-    public boolean north(){
-        this.pelego.move(pelego.x, pelego.y + 1);
-        return layout[pelego.x][pelego.y];
+    public Point north(){
+        return new Point(pelego.x - 1, pelego.y);
     }
     
-    public boolean south() {
-        this.pelego.move(pelego.x, pelego.y - 1);
-        return layout[pelego.x][pelego.y];
+    public Point south() {
+        return new Point(pelego.x + 1, pelego.y);
+
     }
     
-    public boolean east() {
-        this.pelego.move(pelego.x + 1, pelego.y);
-        return layout[pelego.x][pelego.y];
+    public Point east() {
+        return new Point(pelego.x, pelego.y + 1);
     }
     
-    public boolean west() {
-        this.pelego.move(pelego.x - 1, pelego.y);
-        return layout[pelego.x][pelego.y];
+    public Point west() {
+        return new Point(pelego.x, pelego.y - 1);
+    }
+    
+    public boolean isValid(int direction){
+        Point newPosition = goTo(direction);
+        boolean notCrashed = layout[newPosition.x][newPosition.y];
+        if(notCrashed){
+            pelego.setLocation(newPosition);
+            return true;
+        }
+        return false;
     }
 }

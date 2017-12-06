@@ -62,7 +62,7 @@ public class EightQueensChromossome implements Chromossome {
                 }
             }         
         }
-        return 28 - clashes;
+        return clashes;
     }
     
     private int[] unique(int[] genes){

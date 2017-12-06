@@ -47,9 +47,9 @@ public class MazeChromossome implements Chromossome{
         int[] crossed_genes = new int[maze.maximumPathSize()];
         for (int i = 0; i < crossed_genes.length; i++) {
             if (i <= break_position) {
-                crossed_genes[i] = this.path[i];
+                crossed_genes[crossed_genes.length - 1 - i] = this.path[i];
             } else {
-                crossed_genes[i] = eq_chromossome.path[i];
+                crossed_genes[crossed_genes.length - 1 - i] = eq_chromossome.path[i];
             }
         }
         return new MazeChromossome(crossed_genes);
@@ -57,12 +57,12 @@ public class MazeChromossome implements Chromossome{
 
     @Override
     public double fitness() {
-        int pace = 0;
-        boolean crashed;
+        int pace = -1;
+        boolean notCrashed;
         do{
             pace++;
-            crashed = maze.goTo(path[pace]); 
-        }while(!crashed);
+            notCrashed = maze.isValid(path[pace]); 
+        }while(notCrashed);
         return maze.distanceToFinish();
     }
 
