@@ -7,7 +7,7 @@ package genetic.reporter;
 
 import genetic.solution.Chromossome;
 import genetic.solution.ChromossomeStatus;
-import genetic.solution.RespondToInterest;
+import genetic.solution.behaviours.RespondToInterest;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;

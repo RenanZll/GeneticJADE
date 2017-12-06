@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package genetic.jade;
+package genetic.jade.scenarios.maze;
 
 import java.awt.Point;
 import java.io.Serializable;
@@ -19,8 +19,8 @@ public class Maze implements Serializable {
     private Point finish;
     
     public Maze(){
-        this.pelego = new Point(4, 1);
-        this.finish = new Point(4, 3);
+        this.pelego = new Point(3, 1);
+        this.finish = new Point(3, 3);
         initialize_layout();
     }
     
@@ -29,7 +29,6 @@ public class Maze implements Serializable {
         {
             {false,false,false,false,false},
             {false,true,true,true,false},
-            {false,true,false,true,false},
             {false,true,false,true,false},
             {false,true,false,true,false},
             {false,false,false,false,false}

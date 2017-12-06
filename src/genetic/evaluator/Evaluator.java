@@ -32,7 +32,7 @@ public class Evaluator extends Agent {
     }
     
     public void says(String text) {
-        System.out.println(getName() + ": " + text);
+//        System.out.println(getName() + ": " + text);
     }
     
     public DFAgentDescription description(){

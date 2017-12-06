@@ -18,4 +18,6 @@ public interface Chromossome extends Serializable {
     public double fitness();
             
     public void mutate();
+    
+    public void printGenes();
 }
