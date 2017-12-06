@@ -36,7 +36,6 @@ public class SearchPartner extends CyclicBehaviour {
         try {
              partner =  randomPartnerDescription(partnerList());
              mateWith(partner);
-//             Thread.sleep(rnd.nextInt(10)*1000);
         } catch (FIPAException ex) {
             Logger.getLogger(SearchPartner.class.getName()).log(Level.SEVERE, null, ex);
         }

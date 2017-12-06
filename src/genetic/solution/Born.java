@@ -5,6 +5,7 @@
  */
 package genetic.solution;
 
+import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.SimpleBehaviour;
 import jade.domain.DFService;
@@ -12,6 +13,7 @@ import jade.domain.FIPAException;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import jade.lang.acl.UnreadableException;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -46,6 +48,7 @@ public class Born extends SimpleBehaviour{
 //        mySolution.says("Configurando comportamentos...");
         setFitness(message);
         registerSolution();
+        reportSolution();
 
         mySolution.addBehaviour(new SearchPartner(mySolution));
         mySolution.addBehaviour(new RespondToInterest(mySolution));
@@ -61,6 +64,21 @@ public class Born extends SimpleBehaviour{
         ex.printStackTrace();
      }
 //     mySolution.says("Registrado nas paginas amarelas!");
+    }
+    
+    private void reportSolution() {
+        ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
+        AID reporter_name = new AID("Reporter", AID.ISLOCALNAME); 
+
+        try {
+            msg.addReceiver(reporter_name);
+            msg.setOntology("BornReport");
+            msg.setContentObject((Chromossome) mySolution.getChromossome());
+            mySolution.send(msg);
+            mySolution.says("Reportando nascimento para " + reporter_name.getName());
+        } catch (IOException ex) {
+            Logger.getLogger(Born.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private ACLMessage getMessage(){
