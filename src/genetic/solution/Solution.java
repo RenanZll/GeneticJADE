@@ -6,6 +6,7 @@
 package genetic.solution;
 
 
+import genetic.solution.behaviours.Born;
 import jade.core.Agent;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 
@@ -17,12 +18,12 @@ public class Solution extends Agent {
 
     private Chromossome chromossome;
     private Integer  age = 0;
-    private Integer fitnessValue;
+    private double fitnessValue;
     
     @Override
     protected void setup() {
         loadChromossome();
-        System.out.println("Inicializando Solution: " + this.getName());
+        says("Inicializando Solution: " + this.getName());
         requestFitness();
         addBehaviour(new Born(this));
     }
@@ -41,10 +42,13 @@ public class Solution extends Agent {
         age++;
     }
     
-    public void setFitness(int fitnessValue){
+    public void setFitness(double fitnessValue){
         this.fitnessValue = fitnessValue;
     }
-    
+
+    public double getFitness(){
+        return this.fitnessValue;
+    }    
     
     public int getAge() {
         return this.age;
@@ -55,7 +59,7 @@ public class Solution extends Agent {
     }
     
     public void says(String text){
-        System.out.println(getName() + ": " + text);
+//        System.out.println(getName() + ": " + text);
     }
 
     private void requestFitness() {

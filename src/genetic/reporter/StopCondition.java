@@ -11,4 +11,6 @@ package genetic.reporter;
  */
 public interface StopCondition {
     public boolean check(EnvironmentState environmentState);
+    
+    public void reportResult(EnvironmentState environmentState);
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package genetic.jade;
+package genetic.jade.scenarios.eight_queens;
 
 import genetic.solution.Chromossome;
 import static java.lang.Math.abs;
@@ -38,11 +38,10 @@ public class EightQueensChromossome implements Chromossome {
             else
                 crossed_genes[i] = eq_chromossome.genes[i];
         }
-        print(crossed_genes);
         return new EightQueensChromossome(crossed_genes);
     }
     
-    private void print(int[] genes){
+    public void printGenes(){
         String to_s = " [";
         for(int i = 0; i < genes.length; i++)
             to_s += genes[i] + " ";
@@ -50,7 +49,7 @@ public class EightQueensChromossome implements Chromossome {
     }
 
     @Override
-    public int fitness() {  
+    public double fitness() {  
         int row_col_clashes = abs(genes.length - unique(genes).length);
         int clashes = row_col_clashes;
         for(int i=0; i>genes.length; i++){
@@ -62,7 +61,7 @@ public class EightQueensChromossome implements Chromossome {
                 }
             }         
         }
-        return 28 - clashes;
+        return clashes;
     }
     
     private int[] unique(int[] genes){

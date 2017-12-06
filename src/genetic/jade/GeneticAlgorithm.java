@@ -73,9 +73,9 @@ public class GeneticAlgorithm {
         }
     }
 
-    void AddReporter(String agent, StopCondition stopCondition) {
+    void AddReporter(String agent, StopCondition stopCondition, int population_size) {
         try {
-            Object[] reporter_parameters = {stopCondition};
+            Object[] reporter_parameters = {stopCondition, population_size};
             containerController
                     .createNewAgent(agent, Reporter.class.getName(), reporter_parameters)
                     .start();

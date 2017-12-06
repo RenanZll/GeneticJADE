@@ -14,14 +14,14 @@ import java.util.List;
  */
 public class EnvironmentState {
 
-    private int maximumFitness;
-    private int minimumFitness;
+    private double maximumFitness;
+    private double minimumFitness;
     
     private List<SolutionState> solutionStates;
 
     public EnvironmentState() {
-        maximumFitness = Integer.MIN_VALUE;
-        minimumFitness = Integer.MAX_VALUE;
+        maximumFitness = Double.MIN_VALUE;
+        minimumFitness = Double.MAX_VALUE;
         
         solutionStates = new ArrayList<>();
     }
@@ -30,7 +30,7 @@ public class EnvironmentState {
     void addSolution(SolutionState state) {
         solutionStates.add(state);
         
-        int fitness = state.getChromossome().fitness();
+        double fitness = state.getChromossome().fitness();
         
         if (fitness > maximumFitness)
             maximumFitness = fitness;
@@ -39,11 +39,11 @@ public class EnvironmentState {
             minimumFitness = fitness;
     }  
 
-    public int getMaximumFitness() {
+    public double getMaximumFitness() {
         return maximumFitness;
     }
 
-    public int getMinimumFitness() {
+    public double getMinimumFitness() {
         return minimumFitness;
     }
 

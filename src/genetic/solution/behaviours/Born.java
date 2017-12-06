@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package genetic.solution;
+package genetic.solution.behaviours;
 
+import genetic.solution.Chromossome;
+import genetic.solution.Solution;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.SimpleBehaviour;
@@ -26,7 +28,7 @@ public class Born extends SimpleBehaviour{
     boolean done = false;
     Solution mySolution;
     
-    Born(Agent agent) {
+    public Born(Agent agent) {
         super(agent);
         mySolution = (Solution) agent;
     }
@@ -88,8 +90,8 @@ public class Born extends SimpleBehaviour{
 
     private void setFitness(ACLMessage message) {
         try {
-            mySolution.says("Fitness: " + String.valueOf((int) message.getContentObject()));
-            mySolution.setFitness((int) message.getContentObject());
+            mySolution.says("Fitness: " + String.valueOf((double) message.getContentObject()));
+            mySolution.setFitness((double) message.getContentObject());
         } catch (UnreadableException ex) {
             Logger.getLogger(Born.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -5,6 +5,7 @@
  */
 package genetic.solution;
 
+import genetic.solution.behaviours.Born;
 import genetic.evaluator.DFEvaluatorDescription;
 import jade.core.AID;
 import jade.domain.DFService;
